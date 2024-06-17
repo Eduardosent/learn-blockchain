@@ -129,6 +129,34 @@ contract EtherUnits {
     uint256 public oneEther = 1 ether;
     // 1 ether is equal to 10^18 wei
     bool public isOneEther = (oneEther == 1e18);
-}
-`
+}`,
+arraym:
+`//////////////////0/1/2/3/4 
+uint[] numbers = [1,2,3,4,5];
+numbers.length; //length of the array
+numbers.push(6); //increase array length to 1
+numbers.pop(); //decrease array length to 1
+//delete or change value in a index position
+delete numbers[index];
+numbers[index] = newValue;`,
+hrequire:
+`function transfer(address recipient, uint amount) public {
+    require(amount > 0, "Amount must be greater than 0");
+    balances[msg.sender] -= amount;
+    balances[recipient] += amount;
+}`,
+hassert:
+`function withdraw(uint amount) public {
+    assert(balances[msg.sender] >= amount);
+    balances[msg.sender] -= amount;
+    payable(msg.sender).transfer(amount);
+}`,
+hrevert:
+`function withdraw(uint amount) public {
+    require(balances[msg.sender] >= amount, "Insufficient balance");
+    balances[msg.sender] -= amount;
+    if (!msg.sender.send(amount)) {
+        revert("Failed to send funds");
+    }
+}`
 }

@@ -36,6 +36,19 @@ export default function Solidity(){
             <ExtraText>Estas son las unidades de medida que representan las fracciones de ETH en una transacción, asi como el dolar que 100 centimos representan un dolar y tiene dos fracciones, 1 wei representa 18 fracciones de 1 Ether (1 seguido de 18 ceros), 1gwei representa 9 fracciones de 1 Ether (1 seguido de 9 ceros). Son unidades de medida y se pueden igualar con uint como 10x18 == 1 ether, ó 1^18 == 1 ether. 
             </ExtraText>
             <Code code={code.etherandwei}/>
+            <SubTitle>Métodos para Arreglos</SubTitle>
+            <ExtraText>Los métodos para arreglos sirven para eliminar, cambiar o eliminar los elementos de un arreglo</ExtraText>
+            <Code code={code.arraym}/>
+            <SubTitle>Funciones para el manejo de Errores en Solidity</SubTitle>
+            <SubTitle>Require</SubTitle>
+            <ExtraText>La función require juega un papel fundamental en el desarrollo de contratos Solidity seguros y confiables. Al emplear la función require de manera efectiva, puede validar entradas, hacer cumplir condiciones y mejorar la integridad general de la lógica de su contrato.</ExtraText>
+            <Code code={code.hrequire}/>
+            <SubTitle>Assert</SubTitle>
+            <ExtraText>La función de afirmación se utiliza para verificar errores internos en el código del contrato. Toma una expresión booleana como argumento, genera una excepción y revierte la transacción si la expresión se evalúa como falsa. Sin embargo, a diferencia de la función require, la función afirmar solo debe usarse para verificar errores internos en el código del contrato que nunca deberían ocurrir. He aquí un ejemplo:</ExtraText>
+            <Code code={code.hassert}/>
+            <SubTitle>Revert</SubTitle>
+            <ExtraText>La función de reversión es similar a la función require en el sentido de que se utiliza para revertir una transacción si no se cumple una condición. Sin embargo, la función de reversión proporciona más flexibilidad en el manejo de errores y le permite proporcionar una cadena de motivo para explicar por qué se revirtió la transacción. He aquí un ejemplo:</ExtraText>
+            <Code code={code.hrevert}/>
         </Layout>
     )
 }
