@@ -158,5 +158,144 @@ hrevert:
     if (!msg.sender.send(amount)) {
         revert("Failed to send funds");
     }
-}`
+}`,
+dataloc:
+`contract DataLocations{
+    //storage
+    string stor = "storage";
+
+    //calldata like parameter
+    function any(string calldata parameter)public pure returns(string memory){
+        //memory exist menwhile execute the function
+        string memory memo = "memory";
+        return string.concat(memo, parameter);
+
+        //also exist transient storage that are cleaned after the transaction 
+        //for example msg.sender
+    }
+}`,
+multireturns:
+`    function namedParams(uint _number,bool _boolean)public pure returns (uint,bool){
+    return (_number,_boolean);
+}
+function toNamedValues()public pure returns( uint x,bool y,bool z){
+    //only for use the named parameters 
+    namedParams({_number:1, _boolean:true});
+    //asign values to the named returners
+    return(x=2,y=true,z=false);
+}`,
+viewandpure:
+`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+contract ViewAndPure {
+    uint256 public x = 1;
+
+    // Promise not to modify the state.
+    function addToX(uint256 y) public view returns (uint256) {
+        return x + y;
+    }
+
+    // Promise not to modify or read from the state.
+    function add(uint256 i, uint256 j) public pure returns (uint256) {
+        return i + j;
+    }
+}`,
+funmodifier:
+`contract ModifierFunc{
+
+    uint public ten = 10;//cant be less than 2
+
+    //function modifier
+    modifier limit2(){
+        require(ten >2,"Ten cant be less than 2");
+        _;//underscore is special character only for modifier functions
+    }
+    //modifier execute after or before the function can avoid something happen
+    function rest1toten()public limit2{
+        //function work corrently mean ten was greater than 2
+        ten-=1;
+    }
+}`,
+event:
+`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+contract Event {
+    // Event declaration
+    // Up to 3 parameters can be indexed.
+    // Indexed parameters helps you filter the logs by the indexed parameter
+    event Log(address indexed sender, string message);
+    event AnotherLog();
+
+    function test() public {
+        emit Log(msg.sender, "Hello World!");
+        emit Log(msg.sender, "Hello EVM!");
+        emit AnotherLog();
+    }
+}
+`,
+inheritance:
+`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+/* Graph of inheritance
+    A
+   / \
+  B   C
+ / \ /
+F  D,E
+
+*/
+
+contract A {
+    function foo() public pure virtual returns (string memory) {
+        return "A";
+    }
+}
+
+// Contracts inherit other contracts by using the keyword 'is'.
+contract B is A {
+    // Override A.foo()
+    function foo() public pure virtual override returns (string memory) {
+        return "B";
+    }
+}
+
+contract C is A {
+    // Override A.foo()
+    function foo() public pure virtual override returns (string memory) {
+        return "C";
+    }
+}
+
+// Contracts can inherit from multiple parent contracts.
+// When a function is called that is defined multiple times in
+// different contracts, parent contracts are searched from
+// right to left, and in depth-first manner.
+
+contract D is B, C {
+    // D.foo() returns "C"
+    // since C is the right most parent contract with function foo()
+    function foo() public pure override(B, C) returns (string memory) {
+        return super.foo();
+    }
+}
+
+contract E is C, B {
+    // E.foo() returns "B"
+    // since B is the right most parent contract with function foo()
+    function foo() public pure override(C, B) returns (string memory) {
+        return super.foo();
+    }
+}
+
+// Inheritance must be ordered from “most base-like” to “most derived”.
+// Swapping the order of A and B will throw a compilation error.
+contract F is A, B {
+    function foo() public pure override(A, B) returns (string memory) {
+        return super.foo();
+    }
+}
+`
 }

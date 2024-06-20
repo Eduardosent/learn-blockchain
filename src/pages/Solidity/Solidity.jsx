@@ -49,6 +49,33 @@ export default function Solidity(){
             <SubTitle>Revert</SubTitle>
             <ExtraText>La función de reversión es similar a la función require en el sentido de que se utiliza para revertir una transacción si no se cumple una condición. Sin embargo, la función de reversión proporciona más flexibilidad en el manejo de errores y le permite proporcionar una cadena de motivo para explicar por qué se revirtió la transacción. He aquí un ejemplo:</ExtraText>
             <Code code={code.hrevert}/>
+            <SubTitle>Data Locations: storage, memory, calldata</SubTitle>
+            <ExtraText>storage- la variable es una variable de estado (almacenada en blockchain)</ExtraText>
+            <ExtraText>memory- la variable está en la memoria y existe mientras se llama a una función</ExtraText>
+            <ExtraText>calldata- ubicación de datos especial que contiene argumentos de función</ExtraText>
+            <Code code={code.dataloc}/>
+            <SubTitle>Funciones con parametros nombrados y Funciones con múltiples valores retornados</SubTitle>
+            <ExtraText>Las funciones con parametros nombrados existen en todos los lenguajes de programación usando llaves nombre del parametro y el valor, también en Solidity puedes retornar múltiples valores de la siguiente forma:</ExtraText>
+            <Code code={code.multireturns}/>
+            <SubTitle>View y Pure Functions</SubTitle>
+            <ExtraText>View-La función declara que no se cambiará ningún estado.</ExtraText>
+            <ExtraText>Pure-La función declara que no se cambiará ni leerá ninguna variable de estado.</ExtraText>
+            <Code code={code.viewandpure}/>
+            <SubTitle>Modifier Functions</SubTitle>
+            <ExtraText>Las funciones modidificadoras pueden cambiar las reglas de una función, estas también pueden recibir parámetros</ExtraText>
+            <Code code={code.funmodifier}/>
+            <SubTitle>Eventos en Solidity</SubTitle>
+            <ExtraText>Events permitir el inicio de sesión en la cadena de bloques Ethereum. Algunos casos de uso para eventos son:</ExtraText>
+            <ExtraText>°Escuchar eventos y actualizar la interfaz de usuario</ExtraText>
+            <ExtraText>°Una forma barata de almacenamiento</ExtraText>
+            <Code code={code.event}/>
+            <SubTitle>Herencia /is/virtual/override</SubTitle>
+            <ExtraText>La solidez apoya la herencia múltiple. Los contratos pueden heredar otros contratos utilizando la palabra clave is.</ExtraText>
+            <ExtraText>La función que va a ser anulada por un contrato secundario debe declararse como virtual.</ExtraText>
+            <ExtraText>La función que va a anular una función principal debe utilizar la palabra clave override.</ExtraText>
+            <ExtraText>El orden de herencia es importante.</ExtraText>
+            <ExtraText>Debe enumerar los contratos principales en el orden de "más básicos" a "más derivados".</ExtraText>
+            <Code code={code.inheritance}/>
         </Layout>
     )
 }
