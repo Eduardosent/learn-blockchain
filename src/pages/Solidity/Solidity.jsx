@@ -69,13 +69,17 @@ export default function Solidity(){
             <ExtraText>°Escuchar eventos y actualizar la interfaz de usuario</ExtraText>
             <ExtraText>°Una forma barata de almacenamiento</ExtraText>
             <Code code={code.event}/>
-            <SubTitle>Herencia /is/virtual/override</SubTitle>
+            <SubTitle>Herencia is-virtual-override</SubTitle>
             <ExtraText>La solidez apoya la herencia múltiple. Los contratos pueden heredar otros contratos utilizando la palabra clave is.</ExtraText>
             <ExtraText>La función que va a ser anulada por un contrato secundario debe declararse como virtual.</ExtraText>
             <ExtraText>La función que va a anular una función principal debe utilizar la palabra clave override.</ExtraText>
             <ExtraText>El orden de herencia es importante.</ExtraText>
             <ExtraText>Debe enumerar los contratos principales en el orden de "más básicos" a "más derivados".</ExtraText>
             <Code code={code.inheritance}/>
+            <SubTitle>Sombreado de variables de estado heredadas</SubTitle>
+            <ExtraText>A diferencia de las funciones, las variables de estado no se pueden anular volviéndolas a declarar en el contrato secundario.</ExtraText>
+            <ExtraText>Aprendamos cómo anular correctamente las variables de estado heredadas.</ExtraText>
+            <Code code={code.shadowstatev}/>
         </Layout>
     )
 }
